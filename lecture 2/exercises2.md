@@ -169,9 +169,55 @@ Bonus points if you can also report how many runs it took for the script to fail
  echo "Everything went according to plan"
 ```
 
+In my directory, the script given above is saved as **q3material.sh**.
+
+#### Notes on *q3material.sh*
+
+```bash
+ if [[ n -eq 42 ]]; then
+    echo "Something went wrong"
+    >&2 echo "The error was using magic numbers"
+    exit 1
+ fi
+```
+
+In this segment we can see a format `>&2`. I didn't particularly understand this part initially and here are some explanations I read from [[bash - What does `2>&1` mean? - Stack Overflow](https://stackoverflow.com/questions/818255/what-does-21-mean).
+
+Basically, `>&` is the syntax to **redirect** a _stream_ to another _file descriptor_.
+
+- 0 is stdin
+
+- 1 is stdout
+
+- 2 is stderr
+
+Normally, we use `echo test > file1.txt` to redirect STDOUT to `fileOut.txt`. This is equivalent to `echo test 1> file1.txt`.
+
+To redirect stderr to `file2.txt`, we will use command `echo test 2> file2.txt`. 
+
+Then, if we want to redirect `stdout` to `stderr`, we can use either of the following commands:
+
+```bash
+echo test 1>&2
+echo test >&2
+```
+
+To redirect `stderr` to `stdout`:
+
+```bash
+echo test 2>&1
+```
+
+Thus, in `2>&1`:
+
+- `2>` redirects stderr to an (unspecified) file.
+- `&1` redirects stderr to stdout.
+
+Now, back to our example: `>&2 echo "The error was using magic numbers"`, this is equivalent to `1>&2 echo "The error was using magic numbers"`, which redirects `stdout` to `stderr` so the `stdout` has the same message as `stderr` which is `"The error was using magic numbers"`.
+
 ### Solutions
 
-The script given above is saved as **q3material.sh**.
+The given script is saved as **q3materials.sh**.
 
 #### q3checker.sh
 
@@ -182,8 +228,8 @@ count=0
 # initialize counter
 until [[ $? -ne 0 ]];
 do
-	count=$(( count + 1 ))
-	./q3material.sh > current-result.txt
+    count=$(( count + 1 ))
+    ./q3material.sh > current-result.txt
 done
 echo "It takes $count runs for the script to fail"
 cat current-result.txt
@@ -218,7 +264,6 @@ Something went wrong
 The error was using magic numbers
 It takes 82 runs for the script to fail
 Something went wrong
-
 ```
 
 ### SP: Silly Mistakes
