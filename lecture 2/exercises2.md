@@ -342,6 +342,34 @@ tar -xzf gq4sol.tar.gz --directory extract
 and we inspect the results:
 
 ```bash
+(base) usrname@dyn3252-233 lecture 2 % mkdir extract
+(base) usrname@dyn3252-233 lecture 2 % tar -xzf gq4sol.tar.gz --directory extract
+(base) usrname@dyn3252-233 lecture 2 % ls -R extract
+ex4_html
+
+extract/ex4_html:
+folder1	folder2	folder3	folder4	folder5	folder6	folder7
+
+extract/ex4_html/folder1:
+1.html
+
+extract/ex4_html/folder2:
+2.html
+
+extract/ex4_html/folder3:
+3.html
+
+extract/ex4_html/folder4:
+4.html
+
+extract/ex4_html/folder5:
+5.html
+
+extract/ex4_html/folder6:
+6.html
+
+extract/ex4_html/folder7:
+7.html
 
 ```
 
@@ -357,4 +385,32 @@ and we inspect the results:
 
 ### Description
 
-_(Advanced)_ Write a command or script to recursively find the most recently modified file in a directory. More generally, can you list all files by recency
+_(Advanced)_ Write a command or script to recursively find the most recently modified file in a directory. More generally, can you list all files by recency?
+
+### Solution
+
+1. find all files
+   
+   ```bash
+   find . -type f
+   ```
+
+2. list all the files in the order of recency
+   
+   ```bash
+   ls -lt
+   ```
+
+3. find the MOST recent element
+   
+   ```bash
+   head -n 1
+   ```
+
+Pipeline them together gives:
+
+```bash
+find . -type f | ls -lt | head -n 2 | tail -n 1
+```
+
+Notice the change here as the first line of the `ls -lt` output is `total num` so we does not want to include that line.
