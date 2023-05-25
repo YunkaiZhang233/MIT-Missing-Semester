@@ -286,6 +286,73 @@ Your task is to write a command that recursively finds all HTML files in the fol
 
 If you're on macOS, note that the default BSD `find` is different from the one included in [GNU coreutils](https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands). You can use `-print0` on `find` and the `-0` flag on `xargs`. As a macOS user, you should be awarethat the command-line utilities shipped with macOS may differ from the GNU counterparts; you can install the GNU versions if you like by [using brew](https://formulae.brew.sh/formula/coreutils).
 
+### Solutions
+
+#### Environment Installment
+
+With special thanks to [GitHub - piaoliangkb/missing-semester-2020: MIT: missing semester 2020. Solutions and notes. 学习笔记和部分习题答案](https://github.com/piaoliangkb/missing-semester-2020) which provides a file environment to this question.
+
+`ex4_html.zip` zipped a directory containing the required `html` files in proper format (including nesting directory etc) to work on. I have extracted it as the directory `ex4_html`.
+
+#### Solution
+
+The question could be divided into the following steps:
+
+1. recursively find all `.html` files.
+   
+   ```bash
+   find ex4_html -name '.html' -print0 # note that -print0 is a special parameter required by the BSD, this is not required by Linux
+   ```
+
+2. fetch these files and compress via `tar`
+   
+   ```bash
+   tar -czf q4sol.tar.gz path/to/file1/ path/to/file2
+   ```
+
+we want to import the output of step 1 as the input arguments to step 2, whilst step1 gives stdout whilst step 2 requires arguments as inputs: we will use `xargs` in order to pipe the output of step 1 as args.
+
+Hence, the final solution would be:
+
+```bash
+find ex4_html -name '*.html' -print0 | gxargs -0 tar -czf q4sol.tar.gz
+# Note that in this part, the -0 option in xargs should be modified to -d 
+# -d represents --delimiter, whilst this functionality is not supported by macOS,
+# you can manually download the GNU utils from brew install findutils
+```
+
+Alternate solution in GNU Linux-like format:
+
+```bash
+gfind ex4_html -name '*.html' | gxargs -d '\n' tar -czf gq4sol.tar.gz
+```
+
+#### Check Our Solution
+
+Check the generated `tar.gz` file by extracting it into a directory called `extract` and inspect the elements and compare with `html` elements in the original `ex4_html`.
+
+`-C` option allows us to create a new directory containing the specified files (according to `man tar` pages this is also equivalent to `--cd` and `--directory`).
+
+hence we execute 
+
+```bash
+tar -xzf gq4sol.tar.gz --directory extract
+```
+
+and we inspect the results:
+
+```bash
+
+```
+
+#### SP: Mistakes
+
+- Typing `'.html'` instead of `*.html`, making the command only trying to find hidden `html` files (named, of course, `.html`) -> It founds nothing, so producing an empty output.
+
+- To be fair, using `-0` here is not so accurate but there is no way on original macOS to mimic the `--delimiter` (i.e. `-d`) behaviour as on Linux GNU. I have installed `findutils` so the g-appended commands would behave as those on normal Linux GNU (e.g. `gfind`, `gxargs`, `gtar`).
+
+- When using `gxargs`: delimiter must be either a single character or an escape sequence starting with `\` and NO NEED TO CONNECT VIA `=` as it's already an argument part of the `-d` option.
+
 ## Question 5
 
 ### Description

@@ -1,0 +1,29 @@
+(base) usrname@dyn3252-233 lecture 2 % mkdir extract
+(base) usrname@dyn3252-233 lecture 2 % tar -xzf gq4sol.tar.gz --directory extract
+(base) usrname@dyn3252-233 lecture 2 % ls -R extract
+ex4_html
+
+extract/ex4_html:
+folder1	folder2	folder3	folder4	folder5	folder6	folder7
+
+extract/ex4_html/folder1:
+1.html
+
+extract/ex4_html/folder2:
+2.html
+
+extract/ex4_html/folder3:
+3.html
+
+extract/ex4_html/folder4:
+4.html
+
+extract/ex4_html/folder5:
+5.html
+
+extract/ex4_html/folder6:
+6.html
+
+extract/ex4_html/folder7:
+7.html
+
