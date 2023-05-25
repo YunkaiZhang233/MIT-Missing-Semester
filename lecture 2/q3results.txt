@@ -1,16 +1,16 @@
-(base) rorelynn@dyn3252-233 lecture 2 % chmod u+x q3material.sh
-(base) rorelynn@dyn3252-233 lecture 2 % ls -l q3material.sh q3checker.sh
--rw-r--r--  1 rorelynn  staff  218 25 May 10:09 q3checker.sh
--rwxr--r--  1 rorelynn  staff  210 24 May 23:45 q3material.sh
-(base) rorelynn@dyn3252-233 lecture 2 % source q3checker.sh
+(base) usrname@dyn3252-233 lecture 2 % chmod u+x q3material.sh
+(base) usrname@dyn3252-233 lecture 2 % ls -l q3material.sh q3checker.sh
+-rw-r--r--  1 usrname  staff  218 25 May 10:09 q3checker.sh
+-rwxr--r--  1 usrname  staff  210 24 May 23:45 q3material.sh
+(base) usrname@dyn3252-233 lecture 2 % source q3checker.sh
 The error was using magic numbers
 It takes 1 runs for the script to fail
 Something went wrong
-(base) rorelynn@dyn3252-233 lecture 2 % source q3checker.sh
+(base) usrname@dyn3252-233 lecture 2 % source q3checker.sh
 The error was using magic numbers
 It takes 6 runs for the script to fail
 Something went wrong
-(base) rorelynn@dyn3252-233 lecture 2 % source q3checker.sh
+(base) usrname@dyn3252-233 lecture 2 % source q3checker.sh
 The error was using magic numbers
 It takes 82 runs for the script to fail
 Something went wrong

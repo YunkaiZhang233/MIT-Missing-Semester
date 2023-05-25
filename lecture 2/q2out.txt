@@ -1,0 +1,10 @@
+(base) usrname@dyn3252-233 lecture 2 % source marco.sh
+(base) usrname@dyn3252-233 lecture 2 % source polo.sh
+(base) usrname@dyn3252-233 lecture 2 % cd ..
+(base) usrname@dyn3252-233 missing semester % marco
+in marco we are in directory /Users/usrname/Desktop/computing/year 1/c/40009_materials/C Tools/missing semester
+(base) usrname@dyn3252-233 missing semester % cd "lecture 2"
+(base) usrname@dyn3252-233 lecture 2 % cd foo
+(base) usrname@dyn3252-233 foo % polo
+in polo we started in directory /Users/usrname/Desktop/computing/year 1/c/40009_materials/C Tools/missing semester/lecture 2/foo
+but then it takes us back to the marco directory /Users/usrname/Desktop/computing/year 1/c/40009_materials/C Tools/missing semester
